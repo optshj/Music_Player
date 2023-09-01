@@ -1,0 +1,12 @@
+.form{
+	position:absolute;
+	width:20vw;
+	height:65vh;
+	left:50%;
+	top:50%;
+	margin-top:-32vh;
+	margin-left:-10vw;
+	background-color:white;
+	border-radius:10px;
+	box-shadow: 10px 10px 20px rgba(0,0,0,0.1);
+}

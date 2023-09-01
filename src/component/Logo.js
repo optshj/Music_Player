@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from '../css/logo.module.css';
+import styles from '../css/Logo.module.css';
 
-function logo(){
+function Logo(){
 	
 	return(
 		<div>
@@ -10,4 +10,4 @@ function logo(){
 	)
 }
 			
-export default logo;
+export default Logo;

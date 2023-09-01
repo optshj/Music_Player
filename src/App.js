@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
-import './App.css';
-import logo from './component/logo.js';
-
-class App extends Component {
-  render() {
+import './css/App.module.css';
+import Logo from './component/Logo.js';
+import Player from './component/Player.js';
+function App(){
     return (
       <div className="App">
-			<logo/>
+			<Logo/>
+			<Player/>
       </div>
     );
-  }
 }
 
 export default App;
