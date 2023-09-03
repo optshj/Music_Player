@@ -2,6 +2,7 @@ import React from 'react';
 import styles from '../css/Player.module.css';
 import MusicController from './MusicController.js';
 
+
 function Player(){
 	const songs =[
 		{
@@ -58,6 +59,7 @@ function Player(){
 						</div>
 						<h2 className={styles.musicname}>{songs[i].title}</h2>
 						<p className={styles.artist}>{songs[i].artist}</p>
+						<MusicController/>
 					</div>
 				</div>)
 		}
@@ -70,6 +72,7 @@ function Player(){
 						</div>
 						<h2 className={styles.musicname}>{songs[i].title}</h2>
 						<p className={styles.artist}>{songs[i].artist}</p>
+						<MusicController/>
 					</div>
 				</div>)
 		}
