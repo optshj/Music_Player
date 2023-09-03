@@ -1,12 +1,62 @@
 .form{
 	position:absolute;
 	width:20vw;
-	height:65vh;
+	height:50vh;
 	left:50%;
-	top:50%;
-	margin-top:-32vh;
+	top:140%;
+	margin-top:-25vh;
 	margin-left:-10vw;
 	background-color:white;
 	border-radius:10px;
 	box-shadow: 10px 10px 20px rgba(0,0,0,0.1);
+	transition:opacity 1s,transform 1s;
+}
+.on .form{
+	opacity:0.9;
+	transform:scale(1.1);
+}
+.off .form{
+	opacity:0.6;
+}
+.disc{
+	display:center;
+	justify-content:center;
+	align-items:center;
+	position:relative;
+	top:8%;
+	width:15vw;
+	height:15vw;
+	margin:0px auto;
+	background-color:red;
+	border-radius:50%;
+	box-shadow:10px 10px 20px gray;
+	background-size:15vw 15vw;
+	background-repeat:no-repeat;
+}
+.disc .dot{
+	position:relative;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	top:38%;
+	margin:0px auto;
+	width:3vw;
+	height:3vw;
+	background-color:white;
+	border-radius:50%;
+	box-shadow: inset 5px 5px 10px rgba(0,0,0,0.1);
+}
+.musicname{
+	position:relative;
+	top:7%;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+}
+.artist{
+	position:relative;
+	top:2%;
+	display:flex;
+	align-items:center;
+	justify-content:center;
 }
