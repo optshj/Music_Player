@@ -1,8 +1,18 @@
 .form{
 	display:flex;
 	flex-direction:row;
-	justify-content:center;
+	justify-content:space-around;
 	align-items:center;
-	font-size:20px;
-	margin-top:2vw;
+	font-size:1vw;
+	margin-top:5vw;
+}
+.pause{
+	cursor:pointer;
+}
+.replay{
+	cursor:pointer;
+}
+.play{
+	cursor:pointer;
+	font-size:3vw;
 }

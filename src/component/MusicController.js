@@ -7,9 +7,9 @@ import { FaPause} from "react-icons/fa";
 function MusicController() {
 	return(
 		<div className={styles.form}>
-			<div><FaPause/></div>
-			<div><HiPlay/></div>
-			<div><MdReplay/></div>
+			<div className={styles.pause}><FaPause/></div>
+			<div className={styles.play}><HiPlay/></div>
+			<div className={styles.replay}><MdReplay/></div>
 		</div>
 	)
 	
