@@ -1,9 +1,11 @@
-import React from 'react';
+import React,{useState} from 'react';
 import styles from '../css/Player.module.css';
 import MusicController from './MusicController.js';
 
 
-function Player(){
+function Player({start,songCnt}){
+	const [on,setOn] = useState(false);
+	
 	const songs =[
 		{
 			id:1,
@@ -47,18 +49,22 @@ function Player(){
 		}
 		
 	]
+	const musicOn = () => {
+		
+	}
 	const degree = 45;
 	let rot = [];
 	for(let i=0;i<8;i++) {
+		const musicNum = (i+start)%songCnt; //지금 현재 음악 번호
 		if (i===0){
 			rot.push(
 				<div className={styles.on}>
 					<div className={styles.form} style={{transform:`rotate(${i*degree}deg) translateY(-100vh)`}}>
-						<div className={styles.disc} style={{backgroundImage:`url(assets/img/list${i+1}.png)`}}>
+						<div className={styles.disc} style={{backgroundImage:`url(assets/img/list${musicNum+1}.png)`}}>
 							<div className={styles.dot}></div>
 						</div>
-						<h2 className={styles.musicname}>{songs[i].title}</h2>
-						<p className={styles.artist}>{songs[i].artist}</p>
+						<h2 className={styles.musicname}>{songs[musicNum].title}</h2>
+						<p className={styles.artist}>{songs[musicNum].artist}</p>
 						<MusicController/>
 					</div>
 				</div>)
@@ -67,11 +73,11 @@ function Player(){
 			rot.push(
 				<div className={styles.off}>
 					<div className={styles.form} style={{transform:`rotate(${i*degree}deg) translateY(-100vh)`}}>
-						<div className={styles.disc} style={{backgroundImage:`url(assets/img/list${i+1}.png)`}}>
+						<div className={styles.disc} style={{backgroundImage:`url(assets/img/list${musicNum+1}.png)`}}>
 							<div className={styles.dot}></div>
 						</div>
-						<h2 className={styles.musicname}>{songs[i].title}</h2>
-						<p className={styles.artist}>{songs[i].artist}</p>
+						<h2 className={styles.musicname}>{songs[musicNum].title}</h2>
+						<p className={styles.artist}>{songs[musicNum].artist}</p>
 						<MusicController/>
 					</div>
 				</div>)

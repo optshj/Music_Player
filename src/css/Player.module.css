@@ -13,7 +13,6 @@
 }
 .on .form{
 	opacity:0.9;
-	transform:scale(1.1);
 }
 .off .form{
 	opacity:0.6;
@@ -32,6 +31,11 @@
 	box-shadow:10px 10px 20px gray;
 	background-size:15vw 15vw;
 	background-repeat:no-repeat;
+	/* animation: musicOn 10s infinite linear; */
+}
+@keyframes musicOn{
+	from { transform:rotate(0deg)}
+	to {transform : rotate(360deg)}
 }
 .disc .dot{
 	position:relative;
