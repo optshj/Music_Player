@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import styles from '../css/Btn.module.css';
-import {GrFormPrevious,GrFormNext} from "react-icons/gr";
+import {AiOutlineSwapLeft,AiOutlineSwapRight} from "react-icons/ai";
 import Player from './Player.js';
 
 
@@ -11,7 +11,7 @@ function Prev(){
 		setMusicNum((musicNum+1)%songCnt);
 	}
 	function clickPrev() {
-		if (musicNum == 0) {
+		if (musicNum === 0) {
 			setMusicNum(songCnt-1);
 		}
 		else{
@@ -20,8 +20,8 @@ function Prev(){
 	}
 	return(
 		<div className={styles.form}>
-			<div onClick={clickPrev} className={styles.prev}><GrFormPrevious/></div>
-			<div onClick={clickNext} className={styles.next}><GrFormNext/></div>
+			<div onClick={clickPrev} className={styles.prev}><AiOutlineSwapLeft/></div>
+			<div onClick={clickNext} className={styles.next}><AiOutlineSwapRight/></div>
 			<Player start={musicNum} songCnt={songCnt}/>
 		</div>
 	);

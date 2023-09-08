@@ -1,10 +1,20 @@
 import React,{useState} from 'react';
 import styles from '../css/Player.module.css';
-import MusicController from './MusicController.js';
-
+import { HiPlay } from "react-icons/hi2";
+import { MdReplay } from "react-icons/md";
+import { FaPause} from "react-icons/fa";
 
 function Player({start,songCnt}){
-	const [on,setOn] = useState(false);
+	const [play,setPlay] = useState(false); //음악재생상태?
+	const degree = 45;
+	let rot = [];
+	function onPlay() { //음악재생
+		setPlay(true);
+		console.log(play);
+	}
+	function onPause() { //음악정지
+		setPlay(false);
+	}
 	
 	const songs =[
 		{
@@ -14,7 +24,7 @@ function Player({start,songCnt}){
 		},
 		{
 			id:2,
-			title:'55',
+			title:'55(feat.백예린, 웬디)',
 			artist:"CODE KUNST"
 		},
 		{
@@ -47,25 +57,24 @@ function Player({start,songCnt}){
 			title:'Running through the night',
 			artist:'Seori'
 		}
-		
-	]
-	const musicOn = () => {
-		
-	}
-	const degree = 45;
-	let rot = [];
+		 //음악종류
+	];
 	for(let i=0;i<8;i++) {
 		const musicNum = (i+start)%songCnt; //지금 현재 음악 번호
 		if (i===0){
 			rot.push(
-				<div className={styles.on}>
+				<div className={styles.on}> {/*가운데에 오는 플레이어*/}
 					<div className={styles.form} style={{transform:`rotate(${i*degree}deg) translateY(-100vh)`}}>
-						<div className={styles.disc} style={{backgroundImage:`url(assets/img/list${musicNum+1}.png)`}}>
-							<div className={styles.dot}></div>
+						<div className={play ? styles.playdisc:styles.disc} style={{backgroundImage:`url(assets/img/list${musicNum+1}.png)`}}>
 						</div>
+						<div className={styles.discshadow}></div>
 						<h2 className={styles.musicname}>{songs[musicNum].title}</h2>
 						<p className={styles.artist}>{songs[musicNum].artist}</p>
-						<MusicController/>
+						<div className={styles.controlform}>
+							<div className={styles.pause} onClick={onPause}><FaPause/></div>
+							<div className={styles.play} onClick={onPlay}><HiPlay/></div>
+							<div className={styles.replay}><MdReplay/></div>
+						</div>
 					</div>
 				</div>)
 		}
@@ -74,11 +83,14 @@ function Player({start,songCnt}){
 				<div className={styles.off}>
 					<div className={styles.form} style={{transform:`rotate(${i*degree}deg) translateY(-100vh)`}}>
 						<div className={styles.disc} style={{backgroundImage:`url(assets/img/list${musicNum+1}.png)`}}>
-							<div className={styles.dot}></div>
 						</div>
 						<h2 className={styles.musicname}>{songs[musicNum].title}</h2>
 						<p className={styles.artist}>{songs[musicNum].artist}</p>
-						<MusicController/>
+						<div className={styles.controlform}>
+							<div className={styles.pause}><FaPause/></div>
+							<div className={styles.play}><HiPlay/></div>
+							<div className={styles.replay}><MdReplay/></div>
+						</div>
 					</div>
 				</div>)
 		}

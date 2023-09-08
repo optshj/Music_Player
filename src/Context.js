@@ -1,6 +1,3 @@
-import React from 'react';
+import React,{createContext,useState,useContext} from 'react';
+const Context = createContext();
 
-const musicContext = React.createContext();
-
-
-export default Context;
