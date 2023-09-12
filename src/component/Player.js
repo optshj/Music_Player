@@ -1,19 +1,20 @@
-import React,{useState} from 'react';
+import React,{useState,useContext} from 'react';
 import styles from '../css/Player.module.css';
 import { HiPlay } from "react-icons/hi2";
 import { MdReplay } from "react-icons/md";
 import { FaPause} from "react-icons/fa";
+import PlayContext from '../Context';
 
 function Player({start,songCnt}){
-	const [play,setPlay] = useState(false); //음악재생상태?
+	const {state,actions} = useContext(PlayContext);
 	const degree = 45;
 	let rot = [];
 	function onPlay() { //음악재생
-		setPlay(true);
-		console.log(play);
+		actions.setPlay(true);
+		console.log(state);
 	}
 	function onPause() { //음악정지
-		setPlay(false);
+		actions.setPlay(false);
 	}
 	
 	const songs =[
@@ -63,9 +64,10 @@ function Player({start,songCnt}){
 		const musicNum = (i+start)%songCnt; //지금 현재 음악 번호
 		if (i===0){
 			rot.push(
+
 				<div className={styles.on}> {/*가운데에 오는 플레이어*/}
 					<div className={styles.form} style={{transform:`rotate(${i*degree}deg) translateY(-100vh)`}}>
-						<div className={play ? styles.playdisc:styles.disc} style={{backgroundImage:`url(assets/img/list${musicNum+1}.png)`}}>
+						<div className={state ? styles.playdisc:styles.disc} style={{backgroundImage:`url(assets/img/list${musicNum+1}.png)`}}>
 						</div>
 						<div className={styles.discshadow}></div>
 						<h2 className={styles.musicname}>{songs[musicNum].title}</h2>
@@ -76,7 +78,8 @@ function Player({start,songCnt}){
 							<div className={styles.replay}><MdReplay/></div>
 						</div>
 					</div>
-				</div>)
+				</div>
+			)
 		}
 		else{
 			rot.push(
@@ -92,7 +95,8 @@ function Player({start,songCnt}){
 							<div className={styles.replay}><MdReplay/></div>
 						</div>
 					</div>
-				</div>)
+				</div>
+				)
 		}
 	}
 	return(
