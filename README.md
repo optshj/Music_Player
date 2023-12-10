@@ -1,4 +1,4 @@
-## 프로젝트 시행
+## 프로젝트 실행
     npm start
 ## Commit Convention
 * `Feat` : 새로운 기능 추가
