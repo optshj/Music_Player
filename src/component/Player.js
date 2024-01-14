@@ -1,20 +1,19 @@
-import React,{useState,useContext} from 'react';
+import React from 'react';
 import styles from '../css/Player.module.css';
 import { HiPlay } from "react-icons/hi2";
 import { MdReplay } from "react-icons/md";
 import { FaPause} from "react-icons/fa";
-import PlayContext from '../Context';
+import {usePlayContext} from '../Context';
 
 function Player({start,songCnt}){
-	const {state,actions} = useContext(PlayContext);
+	const {state,actions} = usePlayContext();
 	const degree = 45;
-	let rot = [];
-	function onPlay() { //음악재생
-		actions.setPlay(true);
-		console.log(state);
+	
+	function onPlay(i) { //음악재생
+		actions.setPlay(i);
 	}
-	function onPause() { //음악정지
-		actions.setPlay(false);
+	function onPause(i) { //음악정지
+		actions.setPause(i);
 	}
 	
 	const songs =[
@@ -60,50 +59,38 @@ function Player({start,songCnt}){
 		}
 		 //음악종류
 	];
-	for(let i=0;i<8;i++) {
-		const musicNum = (i+start)%songCnt; //지금 현재 음악 번호
-		if (i===0){
-			rot.push(
 
-				<div className={styles.on}> {/*가운데에 오는 플레이어*/}
-					<div className={styles.form} style={{transform:`rotate(${i*degree}deg) translateY(-100vh)`}}>
-						<div className={state ? styles.playdisc:styles.disc} style={{backgroundImage:`url(assets/img/list${musicNum+1}.png)`}}>
-						</div>
-						<div className={styles.discshadow}></div>
-						<h2 className={styles.musicname}>{songs[musicNum].title}</h2>
-						<p className={styles.artist}>{songs[musicNum].artist}</p>
-						<div className={styles.controlform}>
-							<div className={styles.pause} onClick={onPause}><FaPause/></div>
-							<div className={styles.play} onClick={onPlay}><HiPlay/></div>
-							<div className={styles.replay}><MdReplay/></div>
-						</div>
-					</div>
-				</div>
-			)
-		}
-		else{
-			rot.push(
-				<div className={styles.off}>
-					<div className={styles.form} style={{transform:`rotate(${i*degree}deg) translateY(-100vh)`}}>
-						<div className={styles.disc} style={{backgroundImage:`url(assets/img/list${musicNum+1}.png)`}}>
-						</div>
-						<h2 className={styles.musicname}>{songs[musicNum].title}</h2>
-						<p className={styles.artist}>{songs[musicNum].artist}</p>
-						<div className={styles.controlform}>
-							<div className={styles.pause}><FaPause/></div>
-							<div className={styles.play}><HiPlay/></div>
-							<div className={styles.replay}><MdReplay/></div>
-						</div>
-					</div>
-				</div>
-				)
-		}
-	}
-	return(
-		<div>
-			{rot}
-		</div>
-	);
+    return (
+    <div>
+      {[...Array(8)].map((_, i) => {
+        const musicNum = (i + start) % songCnt;
+        const isPlaying = state.playIndex === i;
+        return (
+          <div key={i} className={isPlaying ? styles.on : styles.off}>
+            <div className={styles.form} style={{ transform: `rotate(${i * degree}deg) translateY(-100vh)` }}>
+              <div
+                className={isPlaying ? styles.playdisc : styles.disc}
+                style={{ backgroundImage: `url(assets/img/list${musicNum + 1}.png)` ,backgroundRepeat: 'no-repeat',backgroundSize: 'cover' }}
+              ></div>
+              <h2 className={styles.musicname}>{songs[musicNum].title}</h2>
+              <p className={styles.artist}>{songs[musicNum].artist}</p>
+              <div className={styles.controlform}>
+                <div className={styles.pause} onClick={() => onPause(i)}>
+                  <FaPause />
+                </div>
+                <div className={styles.play} onClick={() => onPlay(i)}>
+                  <HiPlay />
+                </div>
+                <div className={styles.replay}>
+                  <MdReplay />
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
 }
 
 export default Player;

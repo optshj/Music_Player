@@ -5,7 +5,7 @@ function Logo(){
 	
 	return(
 		<div>
-			<h1 className={styles.biglogo}>Music Player</h1>
+			<h1 className={styles.logo}>Music Player</h1>
 		</div>
 	)
 }

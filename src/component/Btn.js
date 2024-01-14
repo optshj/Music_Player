@@ -1,13 +1,13 @@
-import React,{useState,useContext} from 'react';
+import React,{useState} from 'react';
 import styles from '../css/Btn.module.css';
 import {AiOutlineSwapLeft,AiOutlineSwapRight} from "react-icons/ai";
 import Player from './Player.js';
-import PlayContext from '../Context';
+import { usePlayContext } from '../Context';
 
 function Prev(){
 	const songCnt = 8;
 	const [musicNum,setMusicNum] = useState(0);
-	const {state,actions} = useContext(PlayContext);
+	const {actions} = usePlayContext();
 	const clickNext = () => {
 		setMusicNum((musicNum+1)%songCnt);
 		actions.setPlay(false);
